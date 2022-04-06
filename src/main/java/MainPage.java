@@ -9,7 +9,7 @@ import java.util.List;
 
 
 /**
- * The class shows how phones are counted and how
+ * The class shows how phones are counted and high price calculated
  *
  */
 public class MainPage extends AbstractPage {
@@ -20,7 +20,7 @@ public class MainPage extends AbstractPage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitButton;
 
-    @FindBy(xpath = "//span[normalize-space() ='czarny']")
+    @FindBy(xpath = "//span[normalize-space()='czarny']")
     private WebElement chooseBlackColor;
 
     public MainPage(WebDriver webDriver) {
@@ -43,7 +43,7 @@ public class MainPage extends AbstractPage {
      * Method which count phones and print score
      */
     public void countPhonesAndPrint(){
-        List products = webDriver.findElements(By.xpath("//span[contains(@class,'_1svub _lf05o')]"));
+        List<WebElement> products = webDriver.findElements(By.xpath("//span[contains(@class,'_1svub _lf05o')]"));
         System.out.println("Counted phones: " + products.size());
     }
 
@@ -63,7 +63,6 @@ public class MainPage extends AbstractPage {
                 listOfPrices.add(Double.parseDouble(priceElements.get(i).getText().replaceAll(",", ".").replaceAll(" ", "").replaceAll("zł", "")));
             }
             }
-
         Collections.sort(listOfPrices);
         System.out.println("Highest price: " + listOfPrices.get(listOfPrices.size()-1));
     }
